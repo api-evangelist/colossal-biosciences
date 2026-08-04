@@ -1,0 +1,104 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Colossal Biosciences Content API
+  version: 1.0.0
+x-generated: '2026-08-04'
+x-method: generated
+x-source: openapi/colossal-biosciences-content-openapi.yml
+x-note: >-
+  Overlay of API Evangelist enrichment on top of the DERIVED Colossal Biosciences content
+  OpenAPI. The base document is itself derived mechanically from the live WordPress route
+  index at https://colossal.com/wp-json/ — Colossal Biosciences publishes no OpenAPI. This
+  overlay adds only API Evangelist annotations (artifact cross-links, provenance markers,
+  agent-facing hints observed on live responses); it changes no path, method, parameter or
+  schema harvested from the provider. Nothing here is a claim by Colossal Biosciences.
+extends: openapi/colossal-biosciences-content-openapi.yml
+actions:
+- target: $.info
+  description: Cross-link the API Evangelist artifacts derived from this specification.
+  update:
+    x-apievangelist-provider: colossal-biosciences
+    x-apievangelist-artifacts:
+      conventions: conventions/colossal-biosciences-conventions.yml
+      errors: errors/colossal-biosciences-problem-types.yml
+      data_model: data-model/colossal-biosciences-data-model.yml
+      authentication: authentication/colossal-biosciences-authentication.yml
+      conformance: conformance/colossal-biosciences-conformance.yml
+      lifecycle: lifecycle/colossal-biosciences-lifecycle.yml
+      agentic_access: agentic-access/colossal-biosciences-agentic-access.yml
+      skills: skills/_index.yml
+    x-apievangelist-surface-class: cms-content
+    x-apievangelist-product-api: false
+- target: $.info
+  description: >-
+    Record the error envelope this API actually returns, which is the WordPress REST shape
+    rather than RFC 9457 problem details.
+  update:
+    x-error-envelope:
+      format: wordpress-rest
+      rfc9457: false
+      shape: '{"code": "<string>", "message": "<human string>", "data": {"status": <int>}}'
+      catalog: errors/colossal-biosciences-problem-types.yml
+- target: $.info
+  description: >-
+    Record the collection pagination contract observed on live responses. The base spec
+    carries the page/per_page/offset parameters; the response headers below are not in the
+    route-discovery document and were observed on GET /wp/v2/posts on 2026-08-02.
+  update:
+    x-pagination:
+      style: page-number
+      request_params: [page, per_page, offset]
+      response_headers: [X-WP-Total, X-WP-TotalPages]
+      link_header: 'RFC 8288 Link; rel="next" / rel="prev"'
+      max_per_page: 100
+- target: $.info
+  description: Record that this API exposes no idempotency contract and no rate-limit signalling.
+  update:
+    x-idempotency:
+      supported: false
+    x-rate-limit-signalling:
+      documented: false
+      headers: []
+      note: 'robots.txt requests Crawl-delay 10; no X-RateLimit-* or Retry-After observed.'
+- target: $.servers
+  description: Note that the single production server is the only host; no sandbox exists.
+  update:
+    x-apievangelist-environments:
+      sandbox: false
+      note: >-
+        api.colossal.com, docs.colossal.com and developer.colossal.com do not resolve.
+        There is no test or staging environment.
+- target: $.tags
+  description: Annotate the anonymously readable content tags with agent-facing guidance.
+  update:
+    x-apievangelist-read-surface:
+      anonymous: [Posts, Pages, Media, Categories, Tags, Comments, Users, Search, Discovery]
+      authenticated_only: [Settings]
+      note: >-
+        Every write operation across all tags requires a WordPress Application Password over
+        HTTP Basic. Anonymous callers get read access only.
+- target: $.paths['/wp/v2/posts'].get
+  description: >-
+    Flag the newsroom collection as the primary agent entry point and record the collection
+    size observed at harvest.
+  update:
+    x-apievangelist-primary-entry-point: true
+    x-observed:
+      date: '2026-08-02'
+      total_items: 238
+      header: 'X-WP-Total: 238'
+    x-agent-hint: >-
+      Add _embed to inline author, featured media and terms, and _fields to trim the payload.
+      Sort newest-first with orderby=date&order=desc.
+- target: $.paths['/wp/v2/search'].get
+  description: Record that site search spans multiple content types and returns pointers, not full objects.
+  update:
+    x-agent-hint: >-
+      Returns lightweight {id, title, url, type, subtype} pointers. Resolve a result by
+      calling getPostsId or getPagesId with the returned id, chosen by subtype.
+- target: $.components.securitySchemes.applicationPassword
+  description: Add the authorization endpoint the site advertises for Application Passwords.
+  update:
+    x-authorization-endpoint: https://colossal.com/wp-admin/authorize-application.php
+    x-browser-alternative: logged-in cookie plus X-WP-Nonce header
+    x-oauth2: false

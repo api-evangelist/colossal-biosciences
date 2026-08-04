@@ -19,7 +19,7 @@ x-tier-reason: enrichment-pipeline
 image: https://colossal.com/wp-content/uploads/Colossal_BrandingRegistered_Logo_Icon_RGB_Wht-1.png
 specificationVersion: '0.20'
 created: '2026-08-02'
-modified: '2026-08-02'
+modified: '2026-08-04'
 tags:
 - Company
 - Biotechnology
@@ -56,6 +56,8 @@ apis:
     url: data-model/colossal-biosciences-data-model.yml
   - type: ErrorCatalog
     url: errors/colossal-biosciences-problem-types.yml
+  - type: Examples
+    url: examples/colossal-biosciences-examples.yml
 - aid: colossal-biosciences:mcp
   name: Colossal Biosciences MCP Server (WordPress MCP Adapter)
   description: 'A Model Context Protocol server endpoint advertised in the colossal.com
@@ -73,6 +75,11 @@ apis:
     url: mcp/colossal-biosciences-mcp.yml
   - type: ToolCrosswalk
     url: mcp/colossal-biosciences-tool-crosswalk.yml
+x-enrichment:
+  date: '2026-08-04'
+  status: enriched
+  artifacts_added: 7
+  pass: local-v1
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

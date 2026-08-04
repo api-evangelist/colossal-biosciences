@@ -1,0 +1,153 @@
+generated: '2026-08-04'
+method: probed
+source: live GET requests against https://colossal.com/wp-json/wp/v2 on 2026-08-04
+api: colossal-biosciences:content
+spec: openapi/colossal-biosciences-content-openapi.yml
+note: Real response payloads captured verbatim from the live colossal.com WordPress REST API. Colossal
+  Biosciences publishes no examples of its own and the derived OpenAPI carries none, so these were PROBED,
+  not authored. Every value below came back from an anonymous GET; nothing is synthetic and no field was
+  edited except the truncation noted on each entry. All requests are anonymous and read-only.
+conventions:
+  anonymous_read: true
+  trimming_param: _fields — a comma-separated list of top-level fields, used on most captures below to
+    keep them readable
+  expansion_param: _embed — inlines author, wp:featuredmedia, wp:term and replies into _embedded
+  pagination_headers:
+  - X-WP-Total
+  - X-WP-TotalPages
+examples:
+- operationId: getPosts
+  request: GET /wp/v2/posts?per_page=1&_fields=id,date,slug,status,type,link,title,excerpt,author,featured_media,categories,tags,format
+  status: 200
+  content_type: application/json; charset=UTF-8
+  response_headers:
+    X-WP-Total: '238'
+    X-WP-TotalPages: '238'
+    Link: <https://colossal.com/wp-json/wp/v2/posts?per_page=1&_fields=...&page=2>; rel="next"
+  truncation: per_page=1 and _fields applied on the request; the body below is the complete response
+  response:
+  - id: 2831
+    date: '2026-07-28T20:29:42'
+    slug: bluebuck-the-lost-blue-antelope-of-africa
+    status: publish
+    type: post
+    link: https://colossal.com/bluebuck-the-lost-blue-antelope-of-africa/
+    title:
+      rendered: 'Bluebuck: The Lost Blue Antelope of Africa'
+    excerpt:
+      rendered: '<p>The bluebuck was a South African antelope with sweeping horns and a silvery coat that
+        shimmered blue in the sun. [&hellip;]</p>
+
+        '
+      protected: false
+    author: 16
+    featured_media: 2832
+    format: standard
+    categories:
+    - 6
+    tags: []
+- operationId: getPages
+  request: GET /wp/v2/pages?per_page=2&slug=mammoth&_fields=id,slug,link,title,parent,menu_order,template
+  status: 200
+  truncation: slug filter and _fields applied on the request; body is complete
+  note: Shows slug-based lookup returning a single page, and the custom page template the site uses per
+    species.
+  response:
+  - id: 7
+    slug: mammoth
+    link: https://colossal.com/mammoth/
+    title:
+      rendered: Mammoth
+    parent: 0
+    menu_order: 0
+    template: page-mammoth.php
+- operationId: getMedia
+  request: GET /wp/v2/media?per_page=1&media_type=image&_fields=id,date,slug,type,link,title,author,alt_text,media_type,mime_type,source_url
+  status: 200
+  truncation: per_page=1 and _fields applied; body is complete. media_details.sizes omitted via _fields.
+  note: source_url is the real asset URL — use it rather than constructing one.
+  response:
+  - id: 2853
+    date: '2026-07-28T20:39:44'
+    slug: bluebuck-the-lost-blue-antelope-of-africa-2
+    type: attachment
+    link: https://colossal.com/bluebuck-the-lost-blue-antelope-of-africa/bluebuck-the-lost-blue-antelope-of-africa-2/
+    title:
+      rendered: Bluebuck The Lost Blue Antelope of Africa
+    author: 16
+    alt_text: Bluebuck The Lost Blue Antelope of Africa
+    media_type: image
+    mime_type: image/jpeg
+    source_url: https://colossal.com/wp-content/uploads/Bluebuck-The-Lost-Blue-Antelope-of-Africa.jpg
+- operationId: getCategories
+  request: GET /wp/v2/categories?per_page=5&_fields=id,count,name,slug,taxonomy
+  status: 200
+  truncation: first 5 of the collection; _fields applied
+  response:
+  - id: 189
+    count: 3
+    name: Conservation - Elephant
+    slug: conservation-elephant
+    taxonomy: category
+  - id: 188
+    count: 0
+    name: Conservation - News
+    slug: conservation-news
+    taxonomy: category
+  - id: 187
+    count: 3
+    name: Conservation - Pigeon
+    slug: conservation-pigeon
+    taxonomy: category
+  - id: 186
+    count: 3
+    name: Conservation - Rhino
+    slug: conservation-rhino
+    taxonomy: category
+  - id: 154
+    count: 8
+    name: Dodo
+    slug: dodo
+    taxonomy: category
+- operationId: getSearch
+  request: GET /wp/v2/search?search=mammoth&per_page=3
+  status: 200
+  truncation: first 3 results; the _links block was removed from each result for readability — every other
+    field is verbatim
+  note: Search returns lightweight pointers. Resolve by calling getPostsId when subtype is "post" or getPagesId
+    when subtype is "page".
+  response:
+  - id: 2677
+    title: 'Inside Colossal Biosciences&#8217; Dallas HQ: The Science Behind the Woolly Mammoth Revival'
+    url: https://colossal.com/inside-colossal-biosciences-dallas-hq-the-science-behind-the-woolly-mammoth-revival/
+    type: post
+    subtype: post
+  - id: 2395
+    title: 'A Mammoth Stage: Colossal Biosciences Unites AI and Hollywood to Revive Extinct Species'
+    url: https://colossal.com/a-mammoth-stage-colossal-biosciences-unites-ai-and-hollywood-to-revive-extinct-species/
+    type: post
+    subtype: post
+  - id: 2343
+    title: Colossal&#8217;s Dire Wolf and Woolly Mammoth Project Leverages AI to Advance Species Revival
+    url: https://colossal.com/colossals-dire-wolf-and-woolly-mammoth-project-leverages-ai-to-advance-species-revival/
+    type: post
+    subtype: post
+- operationId: getPostsId
+  request: GET /wp/v2/posts/999999999
+  status: 404
+  content_type: application/json; charset=UTF-8
+  truncation: none — complete response
+  note: Live confirmation of the WordPress error envelope {code, message, data.status}. This is NOT application/problem+json.
+    Catalogued in errors/colossal-biosciences-problem-types.yml.
+  response:
+    code: rest_post_invalid_id
+    message: Invalid post ID.
+    data:
+      status: 404
+not_captured:
+- surface: write operations (createPosts, updatePostsId, deletePostsId, and every other write)
+  reason: require a WordPress Application Password over HTTP Basic; not attempted
+- surface: MCP tools/list
+  reason: authentication-gated — returns HTTP 401 rest_forbidden anonymously (re-confirmed 2026-08-04)
+- surface: getSettings, getUsersMe
+  reason: authenticated-only routes; anonymous calls return 401

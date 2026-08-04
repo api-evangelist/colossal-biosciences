@@ -1,0 +1,53 @@
+generated: '2026-08-04'
+method: generated
+source: openapi/colossal-biosciences-content-openapi.yml
+note: >-
+  Packaged Agent Skills for the only machine-readable surface Colossal Biosciences exposes:
+  the colossal.com WordPress REST content API. Colossal publishes no product API, no developer
+  portal and no skills or AGENTS.md of its own (searched 2026-08-04), so these were GENERATED
+  by the API Evangelist enrichment pipeline. Every operationId referenced in every skill was
+  verified to exist verbatim in the referenced OpenAPI — none was invented. Each skill is
+  read-only by design: all write operations on this API require a WordPress Application
+  Password that no third party holds.
+api: colossal-biosciences:content
+base_url: https://colossal.com/wp-json/wp/v2
+auth: none (anonymous read; writes are gated and out of scope for these skills)
+skills:
+- file: colossal-biosciences-read-newsroom.md
+  name: Read the Colossal Biosciences newsroom
+  description: >-
+    Page through published Colossal Biosciences news posts with authors, featured images and
+    taxonomy resolved in a single request via _embed.
+  api: openapi/colossal-biosciences-content-openapi.yml
+  operations: [getPosts, getPostsId, getCategories, getTags, getUsers, getUsersId]
+- file: colossal-biosciences-search-site.md
+  name: Search colossal.com and resolve results
+  description: >-
+    Run a cross-content-type search and resolve each lightweight result pointer into the full
+    post or page object, branching on subtype.
+  api: openapi/colossal-biosciences-content-openapi.yml
+  operations: [getSearch, getPostsId, getPagesId, getTypes, getTypesType]
+- file: colossal-biosciences-species-pages.md
+  name: Browse Colossal species pages and media
+  description: >-
+    Retrieve the species, science, glossary and ethics pages and pull the associated
+    media-library assets with their real source_url values and alt text.
+  api: openapi/colossal-biosciences-content-openapi.yml
+  operations: [getPages, getPagesId, getMedia, getMediaId]
+cross_references:
+  conventions: conventions/colossal-biosciences-conventions.yml
+  errors: errors/colossal-biosciences-problem-types.yml
+  data_model: data-model/colossal-biosciences-data-model.yml
+  authentication: authentication/colossal-biosciences-authentication.yml
+not_covered:
+- surface: Colossal Biosciences MCP Server (WordPress MCP Adapter)
+  reason: >-
+    tools/list is authentication-gated (HTTP 401 rest_forbidden, re-confirmed 2026-08-04), so
+    no tool name or input schema is publicly observable. No skill is written against a tool
+    set that cannot be verified.
+- surface: Write operations on wp/v2
+  reason: >-
+    Every create/update/delete operation requires a WordPress Application Password issued from
+    the colossal.com admin. No third-party agent can hold one, so no write skill is authored.
+- surface: Colossal scientific, genomic and laboratory data
+  reason: No public API exposes it. Nothing to ground a skill in.
