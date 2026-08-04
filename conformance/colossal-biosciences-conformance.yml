@@ -1,0 +1,59 @@
+generated: '2026-08-02'
+method: derived
+source: >-
+  openapi/colossal-biosciences-content-openapi.yml, live headers, and
+  security/colossal-biosciences-domain-security.yml
+standards:
+- id: openapi-3.1
+  conforms: true
+  evidence: >-
+    openapi/colossal-biosciences-content-openapi.yml — DERIVED by API Evangelist from the
+    provider's live route-discovery document, not published by Colossal Biosciences.
+  provider_published: false
+- id: json-schema
+  conforms: true
+  evidence: WordPress REST route args are JSON Schema fragments (type/enum/default/minimum/maximum)
+- id: rfc7617-http-basic
+  conforms: true
+  evidence: securitySchemes.applicationPassword — http/basic (WordPress Application Passwords)
+- id: rfc8288-web-linking
+  conforms: true
+  evidence: 'Link: <...>; rel="next" observed on GET /wp/v2/posts; resources carry _links relations'
+- id: model-context-protocol
+  conforms: partial
+  evidence: >-
+    JSON-RPC MCP endpoint served at /wp-json/mcp/mcp-adapter-default-server; anonymous
+    tools/list returns 401 so protocol conformance could not be verified.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: errors use the WordPress {code,message,data.status} envelope, not application/problem+json
+- id: oauth2
+  conforms: false
+  evidence: no oauth2 securityScheme; /.well-known/oauth-authorization-server 404
+- id: openid-connect
+  conforms: false
+  evidence: /.well-known/openid-configuration 404
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt 404
+- id: a2a
+  conforms: false
+  evidence: /.well-known/agent-card.json and /.well-known/agent.json both 404
+- id: asyncapi
+  conforms: false
+  evidence: no event, streaming or webhook surface published
+- id: dnssec
+  conforms: true
+  evidence: security/colossal-biosciences-domain-security.yml — DNSKEY present on colossal.com
+- id: dmarc
+  conforms: partial
+  evidence: DMARC record present with policy p=none (monitor only)
+- id: hsts
+  conforms: false
+  evidence: no Strict-Transport-Security header on colossal.com
+compliance_program:
+  published: false
+  certifications: []
+  note: >-
+    No trust center, no SOC 2 / ISO 27001 / HIPAA / GDPR compliance page found on colossal.com
+    (/security/, /trust/, trust.colossal.com all miss). No Compliance or TrustCenter pointer wired.

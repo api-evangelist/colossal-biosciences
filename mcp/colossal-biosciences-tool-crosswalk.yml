@@ -1,0 +1,50 @@
+generated: '2026-08-02'
+method: derived
+source: mcp/colossal-biosciences-mcp.yml + openapi/colossal-biosciences-content-openapi.yml
+status: gated
+status_raw: unmappable-gated
+note: >-
+  Colossal Biosciences serves both an MCP endpoint and (via the WordPress REST route index) a
+  REST content surface, so the crosswalk is emitted — but the MCP tools/list and the backing
+  wp-abilities registry both return HTTP 401, so no tool name is publicly observable. The
+  crosswalk therefore records ZERO mapped rows rather than guessing at WordPress MCP Adapter
+  defaults. rest_only[] below is the real, complete public REST surface that currently has no
+  observable agent tool bound to it.
+surfaces:
+  openapi:
+    file: openapi/colossal-biosciences-content-openapi.yml
+    base_url: https://colossal.com/wp-json/wp/v2
+    gated: false
+    note: anonymous read; write operations require Application Password auth
+  mcp:
+    url: https://colossal.com/wp-json/mcp/mcp-adapter-default-server
+    gated: true
+    note: tools/list -> 401 rest_forbidden
+  graphql:
+    present: false
+crosswalk: []
+mcp_only: []
+rest_only:
+- capability: Newsroom posts
+  operations: [getPosts, getPostsId]
+- capability: Site pages
+  operations: [getPages, getPagesId]
+- capability: Media library
+  operations: [getMedia, getMediaId]
+- capability: Taxonomy
+  operations: [getCategories, getCategoriesId, getTags, getTagsId, getTaxonomies, getTaxonomiesTaxonomy]
+- capability: Comments
+  operations: [getComments, getCommentsId]
+- capability: Site search
+  operations: [getSearch]
+- capability: Authors
+  operations: [getUsers, getUsersId, getUsersMe]
+- capability: Discovery
+  operations: [getTypes, getTypesType, getStatuses, getStatusesStatus, getSettings]
+coverage:
+  tools_named: 0
+  tools_bound: 0
+  mcp_only: 0
+  rest_operations_total: 67
+  rest_operations_with_tool: 0
+  reason: mcp tools/list authentication-gated

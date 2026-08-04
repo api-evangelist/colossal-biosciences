@@ -1,0 +1,40 @@
+generated: '2026-08-02'
+method: searched
+source: https://github.com/colossal-compsci
+note: >-
+  Colossal Biosciences ships no API client library or SDK — it publishes no product API to
+  wrap. The colossal-compsci GitHub organization does publish first-party research software.
+  Registries probed with no first-party hit: npm, PyPI, Maven Central, NuGet, pkg.go.dev,
+  RubyGems, Packagist, crates.io, CRAN. (pypi.org/project/colossal exists but is published
+  by an unrelated author, and the "Colossal-AI" framework on PyPI/npm belongs to HPC-AI Tech,
+  not Colossal Biosciences.)
+sdk_count: 0
+packages:
+- language: r
+  registry: github
+  name: tfboot
+  url: https://github.com/colossal-compsci/tfboot
+  install: devtools::install_github("colossal-compsci/tfboot")
+  official: true
+  api_client: false
+  on_cran: false
+  description: >-
+    R package for bootstrap resampling of motifbreakR results — statistical analysis of SNPs
+    that disrupt transcription-factor binding sites.
+- language: python
+  registry: github
+  name: few-shot-bird-call
+  url: https://github.com/colossal-compsci/few-shot-bird-call
+  install: git clone https://github.com/colossal-compsci/few-shot-bird-call
+  official: true
+  api_client: false
+  description: >-
+    Automated pipeline for few-shot bird-call classification (tooth-billed pigeon case study).
+- language: python
+  registry: github
+  name: SSLUnsupDet
+  url: https://github.com/colossal-compsci/SSLUnsupDet
+  install: git clone https://github.com/colossal-compsci/SSLUnsupDet
+  official: true
+  api_client: false
+  description: Self-supervised unsupervised detection research code.

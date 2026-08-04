@@ -1,0 +1,35 @@
+generated: '2026-08-02'
+method: probed
+source: https://colossal.com/wp-json/ + live probes 2026-08-02
+versioning:
+  scheme: uri-path-namespace
+  current: wp/v2
+  docs: null
+  note: >-
+    Version is carried by the WordPress REST namespace segment. Colossal Biosciences does not
+    version an API of its own — the namespace version tracks WordPress core.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  deprecation_header: false
+  note: No deprecation or sunset policy is published. No Deprecation pointer wired.
+sla:
+  url: null
+  uptime_target: null
+status_page:
+  url: null
+  probed:
+  - {url: 'https://status.colossal.com/', result: DNS does not resolve}
+  - {url: 'https://colossal.statuspage.io/', result: '200 but redirects to the Atlassian Statuspage marketing site — not a Colossal status page'}
+  note: >-
+    No status page exists. The colossal.statuspage.io hit is a false positive and is recorded
+    here so a later round does not re-report it. No StatusPage pointer wired.
+changelog:
+  url: null
+  note: >-
+    https://colossal.com/news/ is a company newsroom (238 posts), not an API changelog. It is
+    wired as Blog, not ChangeLog.
+hosting:
+  cdn: Cloudflare
+  platform: WordPress (WP Engine plugins present in the REST route index)
+deprecated_operations: []

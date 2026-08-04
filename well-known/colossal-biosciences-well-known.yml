@@ -1,0 +1,40 @@
+generated: '2026-08-02'
+method: probed
+source: live HTTP probes, 2026-08-02
+host: https://colossal.com
+note: >-
+  Every /.well-known/ discovery path probed on the single Colossal Biosciences host returned
+  404. Recorded as an honest negative — no WellKnown, SecurityTxt or AgentCard pointer is
+  wired in apis.yml because none of these documents exists. api.colossal.com,
+  docs.colossal.com and developer.colossal.com do not resolve.
+documents:
+- path: /.well-known/security.txt
+  status: 404
+- path: /.well-known/openid-configuration
+  status: 404
+- path: /.well-known/oauth-authorization-server
+  status: 404
+- path: /.well-known/api-catalog
+  status: 404
+- path: /.well-known/ai-plugin.json
+  status: 404
+- path: /.well-known/agent-card.json
+  status: 404
+- path: /.well-known/agent.json
+  status: 404
+- path: /llms.txt
+  status: 404
+- path: /openapi.json
+  status: 404
+- path: /api-docs
+  status: 404
+other:
+- path: /robots.txt
+  status: 200
+  note: WordPress default; disallows /wp-admin/, Crawl-delay 10, points at /sitemap_index.xml
+- path: /sitemap.xml
+  status: 200
+  note: Rank Math sitemap index (post/page/paper/podcast/team/faq sitemaps)
+- path: /wp-json/
+  status: 200
+  note: WordPress REST route-discovery document — the real machine-readable contract on this host

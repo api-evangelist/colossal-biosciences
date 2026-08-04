@@ -1,0 +1,80 @@
+generated: '2026-08-02'
+method: derived
+source: >-
+  openapi/colossal-biosciences-content-openapi.yml plus a live GET
+  /wp-json/wp/v2/posts?per_page=1 payload observed 2026-08-02
+api: colossal-biosciences:content
+note: >-
+  Entity graph of the colossal.com WordPress content API. Relationships are derived from the
+  id-reference fields and _links relations present on real payloads — nothing inferred beyond
+  what the API returns.
+entities:
+- name: post
+  collection: /wp/v2/posts
+  description: Colossal newsroom article (238 published at time of harvest).
+  id: {field: id, type: integer}
+  key_fields: [id, date, date_gmt, modified, slug, status, type, link, title, content, excerpt,
+    author, featured_media, comment_status, sticky, format, meta, categories, tags, class_list, acf]
+  operations: [getPosts, getPostsId, createPosts, createPostsId, updatePostsId, replacePostsId, deletePostsId]
+- name: page
+  collection: /wp/v2/pages
+  description: Marketing / species / glossary page (species, direwolf, mammoth, dodo, thylacine, moa, careers, company...).
+  id: {field: id, type: integer}
+  key_fields: [id, slug, title, content, parent, menu_order, template, acf]
+  operations: [getPages, getPagesId]
+- name: media
+  collection: /wp/v2/media
+  description: Media library attachment (images, video posters, documents).
+  id: {field: id, type: integer}
+  key_fields: [id, source_url, media_type, mime_type, media_details, alt_text, post]
+  operations: [getMedia, getMediaId]
+- name: category
+  collection: /wp/v2/categories
+  description: Post category term.
+  id: {field: id, type: integer}
+  key_fields: [id, name, slug, parent, count, taxonomy]
+  operations: [getCategories, getCategoriesId]
+- name: tag
+  collection: /wp/v2/tags
+  description: Post tag term.
+  id: {field: id, type: integer}
+  key_fields: [id, name, slug, count, taxonomy]
+  operations: [getTags, getTagsId]
+- name: comment
+  collection: /wp/v2/comments
+  description: Comment on a post.
+  id: {field: id, type: integer}
+  key_fields: [id, post, parent, author, author_name, date, content, status]
+  operations: [getComments, getCommentsId]
+- name: user
+  collection: /wp/v2/users
+  description: Post author.
+  id: {field: id, type: integer}
+  key_fields: [id, name, slug, description, link, avatar_urls]
+  operations: [getUsers, getUsersId, getUsersMe]
+- name: search_result
+  collection: /wp/v2/search
+  description: Cross-type site search result pointing back at a post or page.
+  key_fields: [id, title, url, type, subtype]
+  operations: [getSearch]
+relationships:
+- {from: post, to: user, kind: belongs_to, via: author, link_rel: author}
+- {from: post, to: media, kind: has_one, via: featured_media, link_rel: 'wp:featuredmedia'}
+- {from: post, to: category, kind: has_many, via: categories, link_rel: 'wp:term'}
+- {from: post, to: tag, kind: has_many, via: tags, link_rel: 'wp:term'}
+- {from: post, to: comment, kind: has_many, via: null, link_rel: replies}
+- {from: post, to: media, kind: has_many, via: null, link_rel: 'wp:attachment'}
+- {from: page, to: page, kind: belongs_to, via: parent}
+- {from: page, to: user, kind: belongs_to, via: author}
+- {from: page, to: media, kind: has_one, via: featured_media}
+- {from: media, to: post, kind: belongs_to, via: post}
+- {from: comment, to: post, kind: belongs_to, via: post}
+- {from: comment, to: comment, kind: belongs_to, via: parent}
+- {from: comment, to: user, kind: belongs_to, via: author}
+- {from: category, to: category, kind: belongs_to, via: parent}
+- {from: search_result, to: post, kind: belongs_to, via: id, note: resolved by type/subtype}
+traversal:
+  embed_param: _embed
+  note: >-
+    Adding _embed to any collection or item request inlines author, wp:featuredmedia, wp:term
+    and replies into an _embedded object, so the whole graph above is walkable in one request.

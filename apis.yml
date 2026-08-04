@@ -1,23 +1,125 @@
 aid: colossal-biosciences
 name: Colossal Biosciences
-description: 'Colossal Biosciences is a company surfaced via the API Evangelist harvest backlog (source:
-  secondary-market) and added to the network as a stub for full-pipeline profiling.'
+description: 'Colossal Biosciences is a Dallas, Texas based de-extinction and species-preservation
+  biotechnology company founded in 2021 by Ben Lamm and Harvard geneticist George Church.
+  It applies ancient-DNA sequencing, comparative genomics, CRISPR multiplex genome editing,
+  cloning and artificial-womb research to restoring extinct keystone species — the woolly
+  mammoth, thylacine, dodo, moa, dire wolf and blue buck among them — and to conserving
+  critically endangered living species. Colossal spun out the computational life-sciences
+  platform Form Bio, runs the non-profit Colossal Foundation, and publishes its research
+  code through the colossal-compsci GitHub organization. Colossal publishes no product or
+  developer API; the machine-readable surface on colossal.com is the WordPress REST API
+  (wp/v2) that serves the company newsroom, pages, media and site search as JSON, plus a
+  WordPress MCP Adapter endpoint that is present but authentication-gated.'
 url: https://raw.githubusercontent.com/api-evangelist/colossal-biosciences/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
+x-tier: profiled
+x-tier-reason: enrichment-pipeline
+image: https://colossal.com/wp-content/uploads/Colossal_BrandingRegistered_Logo_Icon_RGB_Wht-1.png
 specificationVersion: '0.20'
 created: '2026-08-02'
 modified: '2026-08-02'
 tags:
 - Company
-apis: []
+- Biotechnology
+- Genomics
+- Life Sciences
+- Conservation
+- De-Extinction
+- Synthetic Biology
+- Research
+- Content
+apis:
+- aid: colossal-biosciences:content
+  name: Colossal Biosciences Content API (WordPress REST wp/v2)
+  description: 'The anonymously readable WordPress REST API that colossal.com serves at
+    /wp-json/wp/v2 — newsroom posts, marketing pages, the media library, categories, tags,
+    comments, users and a site-wide search endpoint, all as JSON with page/per_page
+    pagination and X-WP-Total / X-WP-TotalPages headers. This is the CMS content API, not a
+    Colossal product API; Colossal publishes no OpenAPI for it, so the definition in this
+    repo was derived mechanically from the live route-discovery document at
+    https://colossal.com/wp-json/.'
+  humanURL: https://colossal.com/news/
+  baseURL: https://colossal.com/wp-json/wp/v2
+  tags:
+  - Content
+  - News
+  - Search
+  - Media
+  properties:
+  - type: OpenAPI
+    url: openapi/colossal-biosciences-content-openapi.yml
+  - type: Overlay
+    url: overlays/colossal-biosciences-content-overlay.yaml
+  - type: DataModel
+    url: data-model/colossal-biosciences-data-model.yml
+  - type: ErrorCatalog
+    url: errors/colossal-biosciences-problem-types.yml
+- aid: colossal-biosciences:mcp
+  name: Colossal Biosciences MCP Server (WordPress MCP Adapter)
+  description: 'A Model Context Protocol server endpoint advertised in the colossal.com
+    WordPress REST route index under the "mcp" namespace and served at
+    /wp-json/mcp/mcp-adapter-default-server. The endpoint is live but authentication-gated:
+    an anonymous JSON-RPC tools/list returns HTTP 401 rest_forbidden, as does the companion
+    wp-abilities/v1 abilities registry, so the published tool set could not be enumerated.'
+  humanURL: https://colossal.com/wp-json/mcp
+  baseURL: https://colossal.com/wp-json/mcp/mcp-adapter-default-server
+  tags:
+  - MCP
+  - Agents
+  properties:
+  - type: MCPServer
+    url: mcp/colossal-biosciences-mcp.yml
+  - type: ToolCrosswalk
+    url: mcp/colossal-biosciences-tool-crosswalk.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: AgenticAccess
+  url: agentic-access/colossal-biosciences-agentic-access.yml
+- type: DomainSecurity
+  url: security/colossal-biosciences-domain-security.yml
+- type: Authentication
+  url: authentication/colossal-biosciences-authentication.yml
 - type: Website
-  url: https://forgeglobal.com/colossal-biosciences_stock/
+  url: https://colossal.com/
+- type: About
+  url: https://colossal.com/company/
+- type: Blog
+  url: https://colossal.com/news/
+- type: BlogRSS
+  url: https://colossal.com/feed/
+- type: SignUp
+  url: https://colossal.com/newsletter/
+- type: TermsOfService
+  url: https://colossal.com/terms-of-use/
+- type: PrivacyPolicy
+  url: https://colossal.com/privacy-policy/
+- type: Careers
+  url: https://colossal.com/careers/
+- type: GitHubOrganization
+  url: https://github.com/colossal-compsci
+- type: Technology
+  url: https://colossal.com/technology/
+- type: Research
+  url: https://colossal.com/labs/
+- type: Podcast
+  url: https://colossal.com/podcast/
+- type: Foundation
+  url: https://colossalfoundation.org/
+- type: Packages
+  url: packages/colossal-biosciences-packages.yml
+- type: LLMsTxt
+  url: llms/colossal-biosciences-llms.txt
+- type: Conventions
+  url: conventions/colossal-biosciences-conventions.yml
+- type: Conformance
+  url: conformance/colossal-biosciences-conformance.yml
+- type: Lifecycle
+  url: lifecycle/colossal-biosciences-lifecycle.yml
+- type: AgentSkill
+  url: skills/_index.yml

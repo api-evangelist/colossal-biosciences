@@ -1,0 +1,53 @@
+generated: '2026-08-02'
+method: derived
+source: >-
+  Live responses observed on colossal.com/wp-json 2026-08-02, plus the WordPress REST error
+  contract reflected in openapi/colossal-biosciences-content-openapi.yml
+format: wordpress-rest
+rfc9457: false
+envelope:
+  fields:
+  - {name: code, type: string, meaning: machine-readable error slug}
+  - {name: message, type: string, meaning: human-readable message}
+  - {name: data.status, type: integer, meaning: HTTP status code, mirrored in the response status}
+  content_type: application/json
+  note: >-
+    Not application/problem+json — the WordPress REST API predates RFC 9457 and uses its own
+    envelope. Recorded as-is; nothing normalised or invented.
+problems:
+- status: 401
+  code: rest_forbidden
+  title: Sorry, you are not allowed to do that.
+  meaning: The request requires authentication (or higher capabilities) than the caller has.
+  observed_on:
+  - POST /wp-json/mcp/mcp-adapter-default-server (tools/list)
+  - GET /wp-json/wp-abilities/v1/abilities
+  remediation: >-
+    Authenticate with a WordPress Application Password (HTTP Basic) issued from
+    https://colossal.com/wp-admin/authorize-application.php, or a logged-in cookie plus X-WP-Nonce.
+- status: 404
+  code: rest_no_route
+  title: No route was found matching the URL and request method.
+  meaning: The requested path is not a registered REST route in any namespace.
+  remediation: Enumerate valid routes from https://colossal.com/wp-json/ before calling.
+- status: 404
+  code: rest_post_invalid_id
+  title: Invalid post ID.
+  meaning: A single-resource route was called with an id that does not exist or is not visible.
+  source_operation: openapi/colossal-biosciences-content-openapi.yml#getPostsId
+- status: 400
+  code: rest_invalid_param
+  title: Invalid parameter(s).
+  meaning: >-
+    One or more query/body parameters failed the schema declared in the route args
+    (enum, minimum/maximum, or type). data.params names the offending parameters.
+  source_operation: openapi/colossal-biosciences-content-openapi.yml#getPosts
+- status: 403
+  code: rest_cookie_invalid_nonce
+  title: Cookie check failed.
+  meaning: A cookie-authenticated write was attempted without a valid X-WP-Nonce.
+note: >-
+  Colossal Biosciences publishes no error reference. The four codes above are the WordPress
+  core codes for the observed/declared failure modes; the 401 envelope is quoted verbatim from
+  a real response. No error code was invented for a condition that was not observed or
+  declared in the route schema.

@@ -1,0 +1,15 @@
+generated: '2026-08-02'
+method: derived
+source: openapi/colossal-biosciences-content-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: applicationPassword
+  type: http
+  scheme: basic
+  description: WordPress Application Passwords, advertised by the site at https://colossal.com/wp-json/
+    under authentication.application-passwords; authorization endpoint https://colossal.com/wp-admin/authorize-application.php.
+    Read operations on wp/v2 are anonymous.
+  sources:
+  - openapi/colossal-biosciences-content-openapi.yml
