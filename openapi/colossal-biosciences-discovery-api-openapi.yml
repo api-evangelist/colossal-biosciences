@@ -1,0 +1,283 @@
+openapi: 3.2.0
+info:
+  title: Colossal Biosciences Content API (WordPress REST wp/v2) Discovery API
+  version: wp/v2
+  summary: 'Public read surface of colossal.com content: news posts, pages, media, taxonomies, comments and site search.'
+  description: 'Colossal Biosciences publishes colossal.com on WordPress, which exposes the WordPress REST API at https://colossal.com/wp-json/. The wp/v2 namespace is anonymously readable and returns the company''s newsroom posts, marketing pages, media library, categories, tags, comments and a site-wide search endpoint as JSON.
+
+
+    This document was DERIVED mechanically by API Evangelist from the route-discovery document served at https://colossal.com/wp-json/ on 2026-08-02 - every path, method and parameter below is taken verbatim from that descriptor. Colossal Biosciences does not publish an OpenAPI definition of its own, and this is not a product API: it is the content API the CMS exposes. Write operations exist on these routes but require authentication (WordPress Application Passwords over HTTP Basic).'
+  contact:
+    name: Colossal Biosciences
+    url: https://colossal.com/
+  x-derived-by: API Evangelist enrichment pipeline
+  x-derived-from: https://colossal.com/wp-json/
+  x-derived-on: '2026-08-02'
+  x-provider-published: false
+servers:
+- url: https://colossal.com/wp-json
+  description: Production
+tags:
+- name: Discovery
+paths:
+  /wp/v2/statuses:
+    get:
+      operationId: getStatuses
+      summary: GET /wp/v2/statuses
+      tags:
+      - Discovery
+      parameters:
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: Scope under which the request is made; determines fields present in response.
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type:
+                - array
+                - object
+        '400':
+          $ref: '#/components/responses/WpError'
+        '401':
+          $ref: '#/components/responses/WpError'
+        '404':
+          $ref: '#/components/responses/WpError'
+  /wp/v2/statuses/{status}:
+    parameters:
+    - name: status
+      in: path
+      required: true
+      schema:
+        type: string
+      description: WordPress statuses identifier.
+    get:
+      operationId: getStatusesStatus
+      summary: GET /wp/v2/statuses/{status}
+      tags:
+      - Discovery
+      parameters:
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: Scope under which the request is made; determines fields present in response.
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type:
+                - array
+                - object
+        '400':
+          $ref: '#/components/responses/WpError'
+        '401':
+          $ref: '#/components/responses/WpError'
+        '404':
+          $ref: '#/components/responses/WpError'
+  /wp/v2/taxonomies:
+    get:
+      operationId: getTaxonomies
+      summary: GET /wp/v2/taxonomies
+      tags:
+      - Discovery
+      parameters:
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: Scope under which the request is made; determines fields present in response.
+      - name: type
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Limit results to taxonomies associated with a specific post type.
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type:
+                - array
+                - object
+        '400':
+          $ref: '#/components/responses/WpError'
+        '401':
+          $ref: '#/components/responses/WpError'
+        '404':
+          $ref: '#/components/responses/WpError'
+  /wp/v2/taxonomies/{taxonomy}:
+    parameters:
+    - name: taxonomy
+      in: path
+      required: true
+      schema:
+        type: string
+      description: WordPress taxonomies identifier.
+    get:
+      operationId: getTaxonomiesTaxonomy
+      summary: GET /wp/v2/taxonomies/{taxonomy}
+      tags:
+      - Discovery
+      parameters:
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: Scope under which the request is made; determines fields present in response.
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type:
+                - array
+                - object
+        '400':
+          $ref: '#/components/responses/WpError'
+        '401':
+          $ref: '#/components/responses/WpError'
+        '404':
+          $ref: '#/components/responses/WpError'
+  /wp/v2/types:
+    get:
+      operationId: getTypes
+      summary: GET /wp/v2/types
+      tags:
+      - Discovery
+      parameters:
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: Scope under which the request is made; determines fields present in response.
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type:
+                - array
+                - object
+        '400':
+          $ref: '#/components/responses/WpError'
+        '401':
+          $ref: '#/components/responses/WpError'
+        '404':
+          $ref: '#/components/responses/WpError'
+  /wp/v2/types/{type}:
+    parameters:
+    - name: type
+      in: path
+      required: true
+      schema:
+        type: string
+      description: WordPress types identifier.
+    get:
+      operationId: getTypesType
+      summary: GET /wp/v2/types/{type}
+      tags:
+      - Discovery
+      parameters:
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: Scope under which the request is made; determines fields present in response.
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type:
+                - array
+                - object
+        '400':
+          $ref: '#/components/responses/WpError'
+        '401':
+          $ref: '#/components/responses/WpError'
+        '404':
+          $ref: '#/components/responses/WpError'
+components:
+  schemas:
+    WpError:
+      type: object
+      description: The standard WordPress REST API error envelope.
+      properties:
+        code:
+          type: string
+          examples:
+          - rest_forbidden
+        message:
+          type: string
+          examples:
+          - Sorry, you are not allowed to do that.
+        data:
+          type: object
+          properties:
+            status:
+              type: integer
+              examples:
+              - 401
+      required:
+      - code
+      - message
+  responses:
+    WpError:
+      description: WordPress REST API error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/WpError'
+  securitySchemes:
+    applicationPassword:
+      type: http
+      scheme: basic
+      description: WordPress Application Passwords, advertised by the site at https://colossal.com/wp-json/ under authentication.application-passwords; authorization endpoint https://colossal.com/wp-admin/authorize-application.php. Read operations on wp/v2 are anonymous.
