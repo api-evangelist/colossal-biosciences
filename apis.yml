@@ -198,6 +198,8 @@ apis:
   humanURL: https://colossal.com/news/
   baseURL: https://colossal.com/wp-json/wp/v2
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
