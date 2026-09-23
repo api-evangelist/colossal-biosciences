@@ -1,16 +1,7 @@
 {
   "provider": "colossal-biosciences",
   "sources": [
-    "colossal-biosciences-categories-api-openapi.yml",
-    "colossal-biosciences-comments-api-openapi.yml",
-    "colossal-biosciences-discovery-api-openapi.yml",
-    "colossal-biosciences-media-api-openapi.yml",
-    "colossal-biosciences-pages-api-openapi.yml",
-    "colossal-biosciences-posts-api-openapi.yml",
-    "colossal-biosciences-search-api-openapi.yml",
-    "colossal-biosciences-settings-api-openapi.yml",
-    "colossal-biosciences-tags-api-openapi.yml",
-    "colossal-biosciences-users-api-openapi.yml"
+    "_ae-authored/colossal-biosciences-content-openapi.yml"
   ],
   "outputs": [
     "colossal-biosciences-categories-api-openapi.yml",
@@ -28,7 +19,20 @@
   "errors": [],
   "warnings": [],
   "notes": [
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "colossal-biosciences-content-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "colossal-biosciences-categories-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "colossal-biosciences-comments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "colossal-biosciences-discovery-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "colossal-biosciences-media-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "colossal-biosciences-pages-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "colossal-biosciences-posts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "colossal-biosciences-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "colossal-biosciences-settings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "colossal-biosciences-tags-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "colossal-biosciences-users-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

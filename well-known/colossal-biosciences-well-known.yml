@@ -1,33 +1,17 @@
-generated: '2026-08-02'
+generated: '2026-09-19'
 method: probed
 source: live HTTP probes, 2026-08-02
 host: https://colossal.com
-note: >-
-  Every /.well-known/ discovery path probed on the single Colossal Biosciences host returned
-  404. Recorded as an honest negative — no WellKnown, SecurityTxt or AgentCard pointer is
-  wired in apis.yml because none of these documents exists. api.colossal.com,
-  docs.colossal.com and developer.colossal.com do not resolve.
-documents:
-- path: /.well-known/security.txt
-  status: 404
-- path: /.well-known/openid-configuration
-  status: 404
-- path: /.well-known/oauth-authorization-server
-  status: 404
-- path: /.well-known/api-catalog
-  status: 404
-- path: /.well-known/ai-plugin.json
-  status: 404
-- path: /.well-known/agent-card.json
-  status: 404
-- path: /.well-known/agent.json
-  status: 404
-- path: /llms.txt
-  status: 404
-- path: /openapi.json
-  status: 404
-- path: /api-docs
-  status: 404
+note: 'Every /.well-known/ discovery path probed on the single Colossal Biosciences host returned 404.
+  Recorded as an honest negative — no WellKnown, SecurityTxt or AgentCard pointer is wired in apis.yml
+  because none of these documents exists. api.colossal.com, docs.colossal.com and developer.colossal.com
+  do not resolve.
+
+
+  MCP-host OAuth discovery added 2026-09-19 (roadmap#321/#337): the harvest visits a provider''s primary
+  hosts, and RFC 9728 protected-resource metadata lives on the MCP host, so these documents existed and
+  were invisible to the scorer. Fetched live and validated on `resource`/`issuer`; one negative control
+  per host.'
 other:
 - path: /robots.txt
   status: 200
@@ -38,3 +22,46 @@ other:
 - path: /wp-json/
   status: 200
   note: WordPress REST route-discovery document — the real machine-readable contract on this host
+hosts:
+- host: https://colossal.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    file: colossal-biosciences-colossal-oauth-protected-resource.json
+    bytes: 185
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: colossal-biosciences-colossal-oauth-authorization-server.json
+    bytes: 539
+  path_echo_control: passed
+x-shape-fix:
+  converted: '2026-08-20'
+  from: documents
+  note: Rewritten into hosts[] -> documents[], the only shape well_known_docs() in score.rb reads. A served
+    .well-known surface recorded in any other shape scores as absent.
+x-mcp-probe:
+  probed: '2026-09-19'
+  issue: roadmap#321, roadmap#337
+  documents:
+  - host: https://colossal.com
+    path: /.well-known/oauth-protected-resource
+    file: colossal-biosciences-colossal-oauth-protected-resource.json
+  - host: https://colossal.com
+    path: /.well-known/oauth-authorization-server
+    file: colossal-biosciences-colossal-oauth-authorization-server.json
+  validated_on: resource (RFC 9728) / issuer (RFC 8414, OIDC)
+  negative_control: one per host; a 2xx JSON object at an impossible path discards the host
