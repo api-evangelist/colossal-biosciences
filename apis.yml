@@ -54,7 +54,6 @@ tags:
 - De-Extinction
 - Synthetic Biology
 - Research
-- Content
 apis:
 - aid: colossal-biosciences:mcp
   name: Colossal Biosciences MCP Server (WordPress MCP Adapter)
@@ -73,168 +72,23 @@ apis:
     url: mcp/colossal-biosciences-mcp.yml
   - type: ToolCrosswalk
     url: mcp/colossal-biosciences-tool-crosswalk.yml
-- aid: colossal-biosciences:colossal-biosciences-categories-api
-  name: Colossal Biosciences Categories API
-  description: The Categories API from Colossal Biosciences — 2 operation(s) for categories.
-  humanURL: https://colossal.com/news/
-  baseURL: https://colossal.com/wp-json/wp/v2
+  x-surface: platform-generated
+  x-platform: wordpress
+  x-platform-surface: mcp-plugin
+- aid: colossal-biosciences:colossal-com-website-wordpress-rest
+  name: Colossal Biosciences Website (WordPress REST)
+  description: 'The public WordPress REST API (wp-json) of the Colossal Biosciences website at colossal.com:
+    the route index of the site''s content management system, catalogued as one site surface rather than
+    as separate APIs.'
+  baseURL: https://colossal.com/wp-json
   tags:
-  - Categories
+  - WordPress
+  x-surface: platform-generated
   properties:
-  - type: OpenAPI
-    url: openapi/colossal-biosciences-categories-api-openapi.yml
-  - type: DataModel
-    url: data-model/colossal-biosciences-data-model.yml
-  - type: ErrorCatalog
-    url: errors/colossal-biosciences-problem-types.yml
-  - type: Examples
-    url: examples/colossal-biosciences-examples.yml
-- aid: colossal-biosciences:colossal-biosciences-comments-api
-  name: Colossal Biosciences Comments API
-  description: The Comments API from Colossal Biosciences — 2 operation(s) for comments.
-  humanURL: https://colossal.com/news/
-  baseURL: https://colossal.com/wp-json/wp/v2
-  tags:
-  - Comments
-  properties:
-  - type: OpenAPI
-    url: openapi/colossal-biosciences-comments-api-openapi.yml
-  - type: DataModel
-    url: data-model/colossal-biosciences-data-model.yml
-  - type: ErrorCatalog
-    url: errors/colossal-biosciences-problem-types.yml
-  - type: Examples
-    url: examples/colossal-biosciences-examples.yml
-- aid: colossal-biosciences:colossal-biosciences-discovery-api
-  name: Colossal Biosciences Discovery API
-  description: The Discovery API from Colossal Biosciences — 6 operation(s) for discovery.
-  humanURL: https://colossal.com/news/
-  baseURL: https://colossal.com/wp-json/wp/v2
-  tags:
-  - Discovery
-  properties:
-  - type: OpenAPI
-    url: openapi/colossal-biosciences-discovery-api-openapi.yml
-  - type: DataModel
-    url: data-model/colossal-biosciences-data-model.yml
-  - type: ErrorCatalog
-    url: errors/colossal-biosciences-problem-types.yml
-  - type: Examples
-    url: examples/colossal-biosciences-examples.yml
-- aid: colossal-biosciences:colossal-biosciences-media-api
-  name: Colossal Biosciences Media API
-  description: The Media API from Colossal Biosciences — 4 operation(s) for media.
-  humanURL: https://colossal.com/news/
-  baseURL: https://colossal.com/wp-json/wp/v2
-  tags:
-  - Media
-  properties:
-  - type: OpenAPI
-    url: openapi/colossal-biosciences-media-api-openapi.yml
-  - type: DataModel
-    url: data-model/colossal-biosciences-data-model.yml
-  - type: ErrorCatalog
-    url: errors/colossal-biosciences-problem-types.yml
-  - type: Examples
-    url: examples/colossal-biosciences-examples.yml
-- aid: colossal-biosciences:colossal-biosciences-pages-api
-  name: Colossal Biosciences Pages API
-  description: The Pages API from Colossal Biosciences — 2 operation(s) for pages.
-  humanURL: https://colossal.com/news/
-  baseURL: https://colossal.com/wp-json/wp/v2
-  tags:
-  - Pages
-  properties:
-  - type: OpenAPI
-    url: openapi/colossal-biosciences-pages-api-openapi.yml
-  - type: DataModel
-    url: data-model/colossal-biosciences-data-model.yml
-  - type: ErrorCatalog
-    url: errors/colossal-biosciences-problem-types.yml
-  - type: Examples
-    url: examples/colossal-biosciences-examples.yml
-- aid: colossal-biosciences:colossal-biosciences-posts-api
-  name: Colossal Biosciences Posts API
-  description: The Posts API from Colossal Biosciences — 2 operation(s) for posts.
-  humanURL: https://colossal.com/news/
-  baseURL: https://colossal.com/wp-json/wp/v2
-  tags:
-  - Posts
-  properties:
-  - type: OpenAPI
-    url: openapi/colossal-biosciences-posts-api-openapi.yml
-  - type: DataModel
-    url: data-model/colossal-biosciences-data-model.yml
-  - type: ErrorCatalog
-    url: errors/colossal-biosciences-problem-types.yml
-  - type: Examples
-    url: examples/colossal-biosciences-examples.yml
-- aid: colossal-biosciences:colossal-biosciences-search-api
-  name: Colossal Biosciences Search API
-  description: The Search API from Colossal Biosciences — 1 operation(s) for search.
-  humanURL: https://colossal.com/news/
-  baseURL: https://colossal.com/wp-json/wp/v2
-  tags:
-  - Search
-  properties:
-  - type: OpenAPI
-    url: openapi/colossal-biosciences-search-api-openapi.yml
-  - type: DataModel
-    url: data-model/colossal-biosciences-data-model.yml
-  - type: ErrorCatalog
-    url: errors/colossal-biosciences-problem-types.yml
-  - type: Examples
-    url: examples/colossal-biosciences-examples.yml
-- aid: colossal-biosciences:colossal-biosciences-settings-api
-  name: Colossal Biosciences Settings API
-  description: The Settings API from Colossal Biosciences — 1 operation(s) for settings.
-  humanURL: https://colossal.com/news/
-  baseURL: https://colossal.com/wp-json/wp/v2
-  tags:
-  - Settings
-  properties:
-  - type: OpenAPI
-    url: openapi/colossal-biosciences-settings-api-openapi.yml
-  - type: DataModel
-    url: data-model/colossal-biosciences-data-model.yml
-  - type: ErrorCatalog
-    url: errors/colossal-biosciences-problem-types.yml
-  - type: Examples
-    url: examples/colossal-biosciences-examples.yml
-- aid: colossal-biosciences:colossal-biosciences-tags-api
-  name: Colossal Biosciences Tags API
-  description: The Tags API from Colossal Biosciences — 2 operation(s) for tags.
-  humanURL: https://colossal.com/news/
-  baseURL: https://colossal.com/wp-json/wp/v2
-  tags:
-  - Tags
-  properties:
-  - type: OpenAPI
-    url: openapi/colossal-biosciences-tags-api-openapi.yml
-  - type: DataModel
-    url: data-model/colossal-biosciences-data-model.yml
-  - type: ErrorCatalog
-    url: errors/colossal-biosciences-problem-types.yml
-  - type: Examples
-    url: examples/colossal-biosciences-examples.yml
-- aid: colossal-biosciences:colossal-biosciences-users-api
-  name: Colossal Biosciences Users API
-  description: The Users API from Colossal Biosciences — 3 operation(s) for users.
-  humanURL: https://colossal.com/news/
-  baseURL: https://colossal.com/wp-json/wp/v2
-  tags:
-  - User
-  tags_raw:
-  - Users
-  properties:
-  - type: OpenAPI
-    url: openapi/colossal-biosciences-users-api-openapi.yml
-  - type: DataModel
-    url: data-model/colossal-biosciences-data-model.yml
-  - type: ErrorCatalog
-    url: errors/colossal-biosciences-problem-types.yml
-  - type: Examples
-    url: examples/colossal-biosciences-examples.yml
+  - type: Documentation
+    url: https://colossal.com/wp-json
+  x-platform: wordpress
+  x-platform-surface: rest
 x-enrichment:
   date: '2026-08-04'
   status: enriched
@@ -292,3 +146,9 @@ common:
   url: lifecycle/colossal-biosciences-lifecycle.yml
 - type: AgentSkill
   url: skills/_index.yml
+- type: DataModel
+  url: data-model/colossal-biosciences-data-model.yml
+- type: ErrorCatalog
+  url: errors/colossal-biosciences-problem-types.yml
+x-tags-removed:
+- Content
