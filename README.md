@@ -64,5 +64,125 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Colossal Biosciences is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://forgeglobal.com/colossal-biosciences_stock/
+Colossal Biosciences is a Dallas, Texas based de-extinction and species-preservation biotechnology company founded in 2021 by Ben Lamm and Harvard geneticist George Church. It applies ancient-DNA sequencing, comparative genomics, CRISPR multiplex genome editing, cloning and artificial-womb research to restoring extinct keystone species — the woolly mammoth, thylacine, dodo, moa, dire wolf and blue buck among them — and to conserving critically endangered living species. Colossal spun out the computational life-sciences platform Form Bio, runs the non-profit Colossal Foundation, and publishes its research code through the colossal-compsci GitHub organization. Colossal publishes no product or developer API; the machine-readable surface on colossal.com is the WordPress REST API (wp/v2) that serves the company newsroom, pages, media and site search as JSON, plus a WordPress MCP Adapter endpoint that is present but authentication-gated.
+
+**Areas:** Company · Biotechnology · Genomics · Life Sciences · Conservation · De-Extinction · Synthetic Biology · Research
+
+## Colossal Biosciences on APIs.io
+
+Everything profiled for Colossal Biosciences is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/colossal-biosciences/](https://apis.io/providers/colossal-biosciences/)** — or go straight to one of the APIs or properties below.
+
+### APIs (2)
+
+- [Colossal Biosciences MCP Server (WordPress MCP Adapter)](https://apis.io/apis/colossal-biosciences/mcp/) — A Model Context Protocol server endpoint advertised in the colossal.com WordPress REST route index under the "mcp" namespace and served at…
+- [Colossal Biosciences Website (WordPress REST)](https://apis.io/apis/colossal-biosciences/colossal-com-website-wordpress-rest/) — The public WordPress REST API (wp-json) of the Colossal Biosciences website at colossal.com: the route index of the site's content management system,…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [mcp-adapter-default-server](https://apis.io/servers/colossal-biosciences/mcp-adapter-default-server/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Colossal Biosciences Agentic Access](https://apis.io/agentic-access/colossal-biosciences/colossal-biosciences-agentic-access/)
+
+#### Collections (10)
+
+Postman and Open Collection request collections.
+
+- [Moved to /providers/colossal-biosciences/](https://apis.io/collections/colossal-biosciences/open-colossal-biosciences-categories-api/)
+- [Moved to /providers/colossal-biosciences/](https://apis.io/collections/colossal-biosciences/open-colossal-biosciences-comments-api/)
+- [Moved to /providers/colossal-biosciences/](https://apis.io/collections/colossal-biosciences/open-colossal-biosciences-discovery-api/)
+- [Moved to /providers/colossal-biosciences/](https://apis.io/collections/colossal-biosciences/open-colossal-biosciences-media-api/)
+- [Moved to /providers/colossal-biosciences/](https://apis.io/collections/colossal-biosciences/open-colossal-biosciences-pages-api/)
+- [Moved to /providers/colossal-biosciences/](https://apis.io/collections/colossal-biosciences/open-colossal-biosciences-posts-api/)
+- [Moved to /providers/colossal-biosciences/](https://apis.io/collections/colossal-biosciences/open-colossal-biosciences-search-api/)
+- [Moved to /providers/colossal-biosciences/](https://apis.io/collections/colossal-biosciences/open-colossal-biosciences-settings-api/)
+- [Moved to /providers/colossal-biosciences/](https://apis.io/collections/colossal-biosciences/open-colossal-biosciences-tags-api/)
+- [Moved to /providers/colossal-biosciences/](https://apis.io/collections/colossal-biosciences/open-colossal-biosciences-users-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Colossal Biosciences Content Overlay](https://apis.io/overlays/colossal-biosciences/colossal-biosciences-content-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Colossal Biosciences Authentication](https://apis.io/security/colossal-biosciences/colossal-biosciences-authentication/)
+- [Colossal Biosciences Domain Security](https://apis.io/security/colossal-biosciences/colossal-biosciences-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://colossal.com/)
+- [Sign up](https://colossal.com/newsletter/)
+- [Blog](https://colossal.com/news/)
+- [Terms of service](https://colossal.com/terms-of-use/)
+- [Privacy policy](https://colossal.com/privacy-policy/)
+- [GitHub](https://github.com/colossal-compsci)
+
+## API Evangelist rating
+
+**Kin Score 21.0** — emerging · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.7 |
+| Contract quality | 1.7 |
+| Contract governance | 4.5 |
+| Operational transparency | 2.6 |
+| Developer ergonomics | 25.6 |
+| Access clarity | 34.2 |
+
+**Agent readiness 20.0** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | platform (partial credit) |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 19.5** — Health
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/colossal-biosciences/](https://apis.io/providers/colossal-biosciences/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Colossal Biosciences: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/colossal-biosciences/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
